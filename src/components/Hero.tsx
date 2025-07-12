@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const Hero: React.FC = () => {
   return (
@@ -21,9 +22,11 @@ const Hero: React.FC = () => {
           </div>
         </div>
         <div className="md:w-1/2 flex justify-center">
-          <img
+          <Image
             src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/50097c3c-8ceb-4e89-988d-a13f19b11857.png"
             alt="Dashboard interface showing candidate analysis with colorful charts and metrics"
+            width={600}  // adjust width based on your layout
+            height={400} // adjust height accordingly
             className="rounded-lg shadow-xl floating"
           />
         </div>
@@ -33,3 +36,4 @@ const Hero: React.FC = () => {
 };
 
 export default Hero;
+

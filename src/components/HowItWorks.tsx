@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const HowItWorks: React.FC = () => {
   return (
@@ -41,9 +42,11 @@ const HowItWorks: React.FC = () => {
         </div>
 
         <div className="flex justify-center">
-          <img
+          <Image
             src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e68a8f91-bea6-4e70-b1d4-e046a5c795bb.png"
             alt="Process flow diagram showing candidate upload, AI analysis, and results delivery steps"
+            width={600} // Adjust based on your design
+            height={400} // Adjust height accordingly
             className="rounded-lg shadow-md"
           />
         </div>

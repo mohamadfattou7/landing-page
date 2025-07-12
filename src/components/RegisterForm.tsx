@@ -1,8 +1,18 @@
 'use client';
 import React, { useState } from 'react';
 
+interface FormData {
+  fullName: string;
+  email: string;
+  phone: string;
+  experience: string;
+  position: string;
+  availability: string;
+  salary: string;
+}
+
 export default function RegisterForm() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     fullName: '',
     email: '',
     phone: '',
@@ -25,9 +35,7 @@ export default function RegisterForm() {
     try {
       const response = await fetch('/api/register', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
 

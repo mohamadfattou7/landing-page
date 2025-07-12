@@ -24,8 +24,14 @@ export async function POST(req: Request) {
     await sendWelcomeEmail(email, fullName || "Candidate");
 
     return NextResponse.json({ message: 'Candidate registered and email sent!' }, { status: 201 });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error:', error);
+
+    if (error instanceof Error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+
     return NextResponse.json({ error: 'Server Error' }, { status: 500 });
   }
 }
+

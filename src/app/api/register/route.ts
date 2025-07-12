@@ -1,3 +1,4 @@
+// app/api/register/route.ts
 import { NextResponse } from 'next/server';
 import { dbConnect } from '@/lib/mongodb';
 import Candidate from '@/models/Candidate';
@@ -7,6 +8,10 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     const { email, fullName } = body;
+
+    if (!email || !fullName) {
+      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+    }
 
     await dbConnect();
 
@@ -25,7 +30,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ message: 'Candidate registered and email sent!' }, { status: 201 });
   } catch (error: unknown) {
-    console.error('Error:', error);
+    console.error('Error in /api/register:', error);
 
     if (error instanceof Error) {
       return NextResponse.json({ error: error.message }, { status: 500 });

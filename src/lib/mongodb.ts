@@ -1,44 +1,17 @@
-import mongoose from "mongoose";
-
-const MONGODB_URI = process.env.MONGODB_URI;
-const DB_NAME = process.env.dbname;
-
-if (!MONGODB_URI) {
-  throw new Error("❌ Please define the MONGODB_URI environment variable.");
-}
-if (!DB_NAME) {
-  throw new Error("❌ Please define the dbname environment variable.");
-}
-
-const mongoUri: string = MONGODB_URI; // assert it's string now
-
-interface MongooseCache {
-  conn: typeof mongoose | null;
-  promise: Promise<typeof mongoose> | null;
-}
-
-const globalWithMongoose = globalThis as typeof globalThis & {
-  _mongoose?: MongooseCache;
-};
-
-if (!globalWithMongoose._mongoose) {
-  globalWithMongoose._mongoose = { conn: null, promise: null };
-}
+// lib/mongodb.ts
+import mongoose from 'mongoose';
 
 export async function dbConnect() {
-  const mongooseCache = globalWithMongoose._mongoose!;
+  if (mongoose.connection.readyState >= 1) return;
 
-  if (mongooseCache.conn) return mongooseCache.conn;
-
-  if (!mongooseCache.promise) {
-    mongooseCache.promise = mongoose.connect(mongoUri, {
-      dbName: DB_NAME,
-    });
+  const uri = process.env.MONGODB_URI;
+  if (!uri) {
+    throw new Error('MONGODB_URI is not defined in environment variables.');
   }
 
-  mongooseCache.conn = await mongooseCache.promise;
-  return mongooseCache.conn;
+  return mongoose.connect(uri);
 }
+
 
 
 

@@ -1,4 +1,3 @@
-// models/Candidate.ts
 import mongoose from "mongoose";
 
 const candidateSchema = new mongoose.Schema({
@@ -12,5 +11,6 @@ const candidateSchema = new mongoose.Schema({
 });
 
 export default mongoose.models.Candidate || mongoose.model("Candidate", candidateSchema);
+
 
 

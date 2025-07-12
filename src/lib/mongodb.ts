@@ -1,4 +1,3 @@
-// lib/mongodb.ts
 import mongoose from 'mongoose';
 
 export async function dbConnect() {
@@ -9,8 +8,13 @@ export async function dbConnect() {
     throw new Error('MONGODB_URI is not defined in environment variables.');
   }
 
-  return mongoose.connect(uri);
+  // Improved error logging
+  return mongoose.connect(uri).catch(err => {
+    console.error("MongoDB connection error:", err);
+    throw err;
+  });
 }
+
 
 
 

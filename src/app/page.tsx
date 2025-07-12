@@ -25,7 +25,7 @@ export default function Home() {
       {/* Only show these on large screens */}
       <div className="hidden md:block">
         <TrustedBy />
-        <Testimonials />
+        
         <Contact />
         <Footer />
       </div>

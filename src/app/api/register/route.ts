@@ -1,4 +1,3 @@
-// app/api/register/route.ts
 import { NextResponse } from 'next/server';
 import { dbConnect } from '@/lib/mongodb';
 import Candidate from '@/models/Candidate';
@@ -9,7 +8,6 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { email, fullName } = body;
 
-    // ✅ Validate required fields
     if (!email || !fullName) {
       return NextResponse.json(
         { error: 'Missing required fields' },
@@ -19,20 +17,17 @@ export async function POST(req: Request) {
 
     await dbConnect();
 
-    // ✅ Check for duplicates
     const existingCandidate = await Candidate.findOne({ email });
     if (existingCandidate) {
       return NextResponse.json(
-        { message: 'Candidate already exists' },
+        { error: 'This email is already subscribed to the open beta.' },
         { status: 400 }
       );
     }
 
-    // ✅ Save new candidate
     const newCandidate = new Candidate({ email, fullName });
     await newCandidate.save();
 
-    // ✅ Send welcome email
     try {
       await sendWelcomeEmail(email, fullName || "Candidate");
     } catch (emailError) {
@@ -51,5 +46,6 @@ export async function POST(req: Request) {
     );
   }
 }
+
 
 

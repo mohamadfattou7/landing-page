@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import aiDashboard from "../../public/ai-dashboard.png"; // ✅ static import
+import aiDashboard from "../../public/ai-dashboard.png";
 
 const Hero: React.FC = () => {
   return (
@@ -16,7 +16,7 @@ const Hero: React.FC = () => {
           </p>
           <div className="flex justify-center md:justify-start">
             <a
-              href="/signup"
+              href="#contact"
               className="bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 transition text-center w-full sm:w-auto"
             >
               Sign Up for Open Beta
@@ -40,6 +40,7 @@ const Hero: React.FC = () => {
 };
 
 export default Hero;
+
 
 
 

@@ -46,7 +46,7 @@ export default function Navbar() {
         <div className="hidden md:flex space-x-6">
           <Link href="#features" className="text-gray-700 hover:text-indigo-600">Features</Link>
           <Link href="#how-it-works" className="text-gray-700 hover:text-indigo-600">How It Works</Link>
-          <Link href="#get-started" className="text-white bg-indigo-600 px-4 py-2 rounded hover:bg-indigo-700">Get Started</Link>
+          <Link href="#contact" className="text-white bg-indigo-600 px-4 py-2 rounded hover:bg-indigo-700">Get Started</Link>
         </div>
       </div>
 
@@ -55,12 +55,13 @@ export default function Navbar() {
         <div className="md:hidden px-4 pb-4">
           <Link href="#features" className="block py-2 text-gray-700">Features</Link>
           <Link href="#how-it-works" className="block py-2 text-gray-700">How It Works</Link>
-          <Link href="#get-started" className="block py-2 text-indigo-600 font-semibold">Get Started</Link>
+          <Link href="#contact" className="block py-2 text-indigo-600 font-semibold">Get Started</Link>
         </div>
       )}
     </nav>
   );
 }
+
 
 
 

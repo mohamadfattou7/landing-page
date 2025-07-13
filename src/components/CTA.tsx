@@ -10,12 +10,16 @@ const CTA: React.FC = () => {
         <p className="text-xl mb-8 max-w-2xl mx-auto">
           Join thousands of companies hiring smarter with AutoInterviewer.ai
         </p>
-        <button className="bg-white text-indigo-600 px-8 py-3 rounded-md hover:bg-gray-100 transition font-semibold">
+        <a
+          href="#contact"
+          className="bg-white text-indigo-600 px-8 py-3 rounded-md hover:bg-gray-100 transition font-semibold"
+        >
           Start Free Trial
-        </button>
+        </a>
       </div>
     </section>
   );
 };
 
 export default CTA;
+

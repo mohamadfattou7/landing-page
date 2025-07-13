@@ -3,8 +3,8 @@ import Hero from "@/components/Hero";
 import TrustedBy from "@/components/TrustedBy";
 import Features from "@/components/Features";
 import HowItWorks from "@/components/HowItWorks";
-//import Testimonials from "@/components/Testimonials";
-//import Pricing from "@/components/Pricing";
+// work
+// import Pricing from "@/components/Pricing";
 import CTA from "@/components/CTA";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -15,20 +15,19 @@ export default function Home() {
       <Navbar />
       <Hero />
 
-      {/* Only show these on ALL screen sizes */}
-      <div>
-        <Features />
-        <HowItWorks />
-        <CTA /> {/* This has your "Get Started" button */}
-      </div>
+      {/* Always visible */}
+      <Features />
+      <HowItWorks />
+      <CTA />
 
-      {/* Only show these on large screens */}
+      {/* TrustedBy hidden on mobile */}
       <div className="hidden md:block">
         <TrustedBy />
-        
-        <Contact />
-        <Footer />
       </div>
+
+      {/* Contact & Footer always visible */}
+      <Contact />
+      <Footer />
     </>
   );
 }

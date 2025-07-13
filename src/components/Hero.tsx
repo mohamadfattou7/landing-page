@@ -26,8 +26,8 @@ const Hero: React.FC = () => {
         {/* RIGHT IMAGE SECTION */}
         <div className="md:w-1/2 flex justify-center">
           <Image
-            src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/50097c3c-8ceb-4e89-988d-a13f19b11857.png"
-            alt="Dashboard interface showing candidate analysis with colorful charts and metrics"
+            src="/ai-dashboard.png"
+            alt="AI Interview dashboard interface"
             width={600}
             height={400}
             className="w-full max-w-md rounded-lg shadow-xl floating"
@@ -39,6 +39,7 @@ const Hero: React.FC = () => {
 };
 
 export default Hero;
+
 
 
 

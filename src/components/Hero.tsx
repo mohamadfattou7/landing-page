@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import aiDashboard from "../../public/ai-dashboard.png"; // ✅ static import
 
 const Hero: React.FC = () => {
   return (
@@ -26,7 +27,7 @@ const Hero: React.FC = () => {
         {/* RIGHT IMAGE SECTION */}
         <div className="md:w-1/2 flex justify-center">
           <Image
-            src="/ai-dashboard.png"
+            src={aiDashboard}
             alt="AI Interview dashboard interface"
             width={600}
             height={400}
@@ -39,6 +40,7 @@ const Hero: React.FC = () => {
 };
 
 export default Hero;
+
 
 
 

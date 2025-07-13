@@ -7,26 +7,10 @@ import { sendWelcomeEmail } from '@/lib/email';
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const {
-      email,
-      fullName,
-      phone,
-      experience,
-      position,
-      availability,
-      salary,
-    } = body;
+    const { email, fullName } = body;
 
-    // ✅ Validate all required fields
-    if (
-      !email ||
-      !fullName ||
-      !phone ||
-      !experience ||
-      !position ||
-      !availability ||
-      !salary
-    ) {
+    // ✅ Validate required fields
+    if (!email || !fullName) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -35,7 +19,7 @@ export async function POST(req: Request) {
 
     await dbConnect();
 
-    // ✅ Check if candidate already exists
+    // ✅ Check for duplicates
     const existingCandidate = await Candidate.findOne({ email });
     if (existingCandidate) {
       return NextResponse.json(
@@ -44,24 +28,15 @@ export async function POST(req: Request) {
       );
     }
 
-    // ✅ Save candidate
-    const newCandidate = new Candidate({
-      email,
-      fullName,
-      phone,
-      experience,
-      position,
-      availability,
-      salary,
-    });
+    // ✅ Save new candidate
+    const newCandidate = new Candidate({ email, fullName });
     await newCandidate.save();
 
-    // ✅ Send welcome email (but don't crash if it fails)
+    // ✅ Send welcome email
     try {
       await sendWelcomeEmail(email, fullName || "Candidate");
     } catch (emailError) {
       console.error("❌ Failed to send welcome email:", emailError);
-      // Don't block user if email fails
     }
 
     return NextResponse.json(
@@ -70,16 +45,8 @@ export async function POST(req: Request) {
     );
   } catch (error: unknown) {
     console.error('❌ Error in /api/register:', error);
-
-    if (error instanceof Error) {
-      return NextResponse.json(
-        { error: error.message },
-        { status: 500 }
-      );
-    }
-
     return NextResponse.json(
-      { error: 'Server Error' },
+      { error: error instanceof Error ? error.message : 'Server Error' },
       { status: 500 }
     );
   }

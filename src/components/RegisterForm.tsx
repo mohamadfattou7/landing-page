@@ -4,22 +4,12 @@ import React, { useState } from 'react';
 interface FormData {
   fullName: string;
   email: string;
-  phone: string;
-  experience: string;
-  position: string;
-  availability: string;
-  salary: string;
 }
 
 export default function RegisterForm() {
   const [formData, setFormData] = useState<FormData>({
     fullName: '',
     email: '',
-    phone: '',
-    experience: '',
-    position: '',
-    availability: '',
-    salary: '',
   });
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -43,15 +33,7 @@ export default function RegisterForm() {
 
       if (response.ok) {
         setModalMessage('🎉 Thank you! We will talk to you soon.');
-        setFormData({
-          fullName: '',
-          email: '',
-          phone: '',
-          experience: '',
-          position: '',
-          availability: '',
-          salary: '',
-        });
+        setFormData({ fullName: '', email: '' });
       } else {
         setModalMessage(`❌ Error: ${result.error || 'Something went wrong'}`);
       }
@@ -66,13 +48,22 @@ export default function RegisterForm() {
   return (
     <div>
       <form onSubmit={handleSubmit} className="form">
-        <input type="text" name="fullName" placeholder="Full Name" value={formData.fullName} onChange={handleChange} required />
-        <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required />
-        <input type="tel" name="phone" placeholder="Phone Number" value={formData.phone} onChange={handleChange} required />
-        <input type="text" name="experience" placeholder="Years of Experience" value={formData.experience} onChange={handleChange} />
-        <input type="text" name="position" placeholder="Position" value={formData.position} onChange={handleChange} />
-        <input type="text" name="availability" placeholder="Availability" value={formData.availability} onChange={handleChange} />
-        <input type="text" name="salary" placeholder="Expected Salary" value={formData.salary} onChange={handleChange} />
+        <input
+          type="text"
+          name="fullName"
+          placeholder="Full Name"
+          value={formData.fullName}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
         <button type="submit">Register</button>
       </form>
 
@@ -136,5 +127,6 @@ export default function RegisterForm() {
     </div>
   );
 }
+
 
 

@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import TrustedBy from "@/components/TrustedBy";
+//import TrustedBy from "@/components/TrustedBy";
 import Features from "@/components/Features";
 import HowItWorks from "@/components/HowItWorks";
 import CTA from "@/components/CTA";
@@ -18,10 +18,7 @@ export default function Home() {
       <HowItWorks />
       <CTA />
 
-      {/* TrustedBy hidden on mobile */}
-      <div className="hidden md:block">
-        <TrustedBy />
-      </div>
+      
 
       {/* Contact & Footer always visible */}
       <Contact />

@@ -14,7 +14,7 @@ const CTA: React.FC = () => {
           href="#contact"
           className="bg-white text-indigo-600 px-8 py-3 rounded-md hover:bg-gray-100 transition font-semibold"
         >
-          Start Free Trial
+          Sign Up for Open Beta
         </a>
       </div>
     </section>
